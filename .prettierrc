@@ -1,0 +1,17 @@
+{
+    "tailwindConfig": "path/to/tailwind.config.js",
+    "plugins": [
+        "prettier-plugin-blade",
+        "prettier-plugin-tailwindcs"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.blade.php"
+            ],
+            "options": {
+                "parser": "blade",
+            }
+        }
+    ]
+}
