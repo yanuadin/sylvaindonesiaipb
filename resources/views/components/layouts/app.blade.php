@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!doctype html>
+<html x-data="{ darkMode: localStorage.getItem('dark') === 'true'}"
+      x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+      x-bind:class="{ 'dark': darkMode }">
 
-        <title>{{ $title ?? 'Page Title' }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body>
+<body>
+<div class="antialiased bg-gray-50 dark:bg-gray-900">
+    <x-flowbite.navbar />
+    <x-flowbite.sidebar />
+    <main class="p-4 md:ml-64 h-auto pt-20">
         {{ $slot }}
+        <x-flowbite.footer/>
+    </main>
+</div>
+</body>
 
-        @livewireScripts
-    </body>
 </html>
