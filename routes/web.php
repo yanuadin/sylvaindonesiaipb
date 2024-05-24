@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\CreatePost;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +22,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', CreatePost::class)->name('dashboard');
+    Route::get('/dashboard', \App\Livewire\CreatePost::class)->name('dashboard');
+
+    //Route Master - User
+    Route::get('/master/user', \App\Livewire\User::class)->name('master.user');
 });
