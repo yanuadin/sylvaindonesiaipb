@@ -64,4 +64,12 @@ include base_path('resources/views/components/flowbite/list-menu.php');
             @endforeach
         </ul>
     </div>
+    <div
+        class="absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20"
+    >
+        <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
+            &copy; 2024 <span class="font-bold" target="_blank">Sylva Indonesia IPB</span>
+        </p>
+
+    </div>
 </aside>
