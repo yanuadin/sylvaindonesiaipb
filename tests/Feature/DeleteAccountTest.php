@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Models\UserModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Features;
 use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
@@ -19,7 +19,7 @@ class DeleteAccountTest extends TestCase
             $this->markTestSkipped('Account deletion is not enabled.');
         }
 
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($user = UserModel::factory()->create());
 
         $component = Livewire::test(DeleteUserForm::class)
             ->set('password', 'password')
@@ -34,7 +34,7 @@ class DeleteAccountTest extends TestCase
             $this->markTestSkipped('Account deletion is not enabled.');
         }
 
-        $this->actingAs($user = User::factory()->create());
+        $this->actingAs($user = UserModel::factory()->create());
 
         Livewire::test(DeleteUserForm::class)
             ->set('password', 'wrong-password')

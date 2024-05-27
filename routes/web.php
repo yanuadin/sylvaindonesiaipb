@@ -22,8 +22,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', \App\Livewire\CreatePost::class)->name('dashboard');
+    Route::get('/dashboard', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
 
-    //Route Master - User
-    Route::get('/master/user', \App\Livewire\User::class)->name('master.user');
+    //Route Master - UserModel
+    Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
 });
