@@ -90,11 +90,11 @@ class User extends Component
 
     public function showViewModal(UserModel $user): void
     {
+        $this->submitMethod = '';
         $this->titleModal = 'View User';
         $this->isViewMode = true;
 
-        $this->name = $user->name;
-        $this->username = $user->username;
+        $this->fillVariable($user);
     }
 
     public function showEditModal(UserModel $user): void
@@ -103,6 +103,11 @@ class User extends Component
         $this->titleModal = 'Edit User';
         $this->isEditMode = true;
 
+        $this->fillVariable($user);
+    }
+
+    private function fillVariable(UserModel $user): void
+    {
         $this->name = $user->name;
         $this->username = $user->username;
         $this->user = $user;
