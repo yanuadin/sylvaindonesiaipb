@@ -19,6 +19,7 @@ class User extends Component
     public string $username = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public string $search = '';
 
     /**
      * @description : other
@@ -33,9 +34,20 @@ class User extends Component
 
     public function render()
     {
-        $users = UserModel::query()->paginate(10)->withQueryString();
+        $search = $this->search;
+        $users = UserModel::query()
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")->orWhere('username', 'like', "%{$search}%");
+            })
+            ->paginate(10)
+            ->withQueryString();
 
         return view('livewire.admin.master.user')->with(['users' => $users]);
+    }
+
+    public function searchData()
+    {
+
     }
 
     public function rules(UserModel $user = null): array

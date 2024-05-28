@@ -3,6 +3,7 @@
         :table-head="$tableHead"
         :datas="$users"
         :data-modal="$dataModal"
+        :search="$search"
     >
         <x-slot:button>
             <button data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
@@ -11,7 +12,6 @@
                 </svg>
                 Add user
             </button>
-
             <!-- Form Modal -->
             <x-flowbite.modal
                 :title-modal="$titleModal"

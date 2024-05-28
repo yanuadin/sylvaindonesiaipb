@@ -17,16 +17,17 @@
                                           clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <input type="text" id="simple-search"
+                            <input wire:model.live.debounce="search" type="text" id="simple-search"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="Search" required="">
+                                   placeholder="Search">
                         </div>
                     </form>
                 </div>
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     {{ $button }}
-                    <div class="flex items-center space-x-1 w-full md:w-auto">
+                    <!-- Start Filter -->
+                    <!-- <div class="flex items-center space-x-1 w-full md:w-auto">
                         <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
                                 class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                 type="button">
@@ -83,7 +84,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
+                    <!-- End Filter -->
                 </div>
             </div>
             <div class="overflow-x-auto">
@@ -108,7 +110,7 @@
                                     wire:key="{{ $keyHead . '-' . $keyData }}">{{ $data[$keyHead] }}</td>
                             @endforeach
                             <td class="px-4 py-3 flex items-center justify-end" wire:key="{{ 'action-' . $keyData }}">
-                                <button wire:click="showViewModal({{ $data->id }})" data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="text-white bg-slate-500 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-slate-400 dark:hover:bg-slate-500 dark:focus:ring-slate-600">
+                                <button wire:click="showViewModal({{ $data->id }})" data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
