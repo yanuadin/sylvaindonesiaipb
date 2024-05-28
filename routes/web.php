@@ -21,7 +21,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
-
-    //Route Master - UserModel
+    Route::get('/post/article', \App\Livewire\Admin\Post\Article::class)->name('admin.post.article');
     Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
 });

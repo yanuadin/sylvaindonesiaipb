@@ -1,7 +1,7 @@
 <div>
     <x-flowbite.table
         :table-head="$tableHead"
-        :datas="$users"
+        :datas="$articles"
         :data-modal="$dataModal"
         :search="$search"
     >
@@ -10,34 +10,25 @@
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Tambah User
+                Tambah Artikel
             </button>
+
             <!-- Form Modal -->
             <x-flowbite.modal
                 :title-modal="$titleModal"
                 :data-modal="$dataModal"
+                max-width="max-w-7xl"
             >
                 <x-slot:content-modal>
                     <form wire:submit.prevent="{{ $submitMethod }}" class="p-4 md:p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
-                                <x-flowbite.label modelName="name" text="Nama"/>
-                                <x-flowbite.input type="text" modelName="name" placeholder="Masukkan nama" :is-disabled="$isViewMode"/>
+                                <x-flowbite.label modelName="title" text="Judul"/>
+                                <x-flowbite.input type="text" modelName="title" placeholder="Masukkan judul" :is-disabled="$isViewMode"/>
                             </div>
-                            <div class="col-span-2">
-                                <x-flowbite.label modelName="username" text="Username"/>
-                                <x-flowbite.input type="text" modelName="username" placeholder="Masukkan username" :is-disabled="$isViewMode"/>
+                            <div class="col-span-4">
+                                <x-flowbite.text-editor/>
                             </div>
-                            @if(!$isEditMode && !$isViewMode)
-                                <div class="col-span-2">
-                                    <x-flowbite.label modelName="password" text="Password"/>
-                                    <x-flowbite.input type="password" modelName="password"/>
-                                </div>
-                                <div class="col-span-2">
-                                    <x-flowbite.label modelName="password_confirmation" text="Confirm Password"/>
-                                    <x-flowbite.input type="password" modelName="password_confirmation"/>
-                                </div>
-                            @endif
                         </div>
 
                         <div class="flex {{ $isViewMode ? 'justify-center' : 'justify-between' }} items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

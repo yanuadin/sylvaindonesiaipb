@@ -24,7 +24,7 @@ class User extends Component
     /**
      * @description : other
      */
-    public string $titleModal = 'Create User';
+    public string $titleModal = 'Tambah User';
     public string $dataModal = 'create-user-modal';
     public array $tableHead = ['name' => 'Name', 'username' => 'Username'];
     public string $submitMethod = 'store';
@@ -43,11 +43,6 @@ class User extends Component
             ->withQueryString();
 
         return view('livewire.admin.master.user')->with(['users' => $users]);
-    }
-
-    public function searchData()
-    {
-
     }
 
     public function rules(UserModel $user = null): array
@@ -103,7 +98,7 @@ class User extends Component
     public function showViewModal(UserModel $user): void
     {
         $this->submitMethod = '';
-        $this->titleModal = 'View User';
+        $this->titleModal = 'Lihat User';
         $this->isViewMode = true;
 
         $this->fillVariable($user);
