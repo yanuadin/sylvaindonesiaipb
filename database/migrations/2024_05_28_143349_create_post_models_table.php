@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('type');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->json('tags');
+            $table->json('tags')->nullable();
             $table->text('content');
             $table->string('image')->nullable();
             $table->boolean('is_public')->default(true);
             $table->string('student_name');
-            $table->string('student_year');
+            $table->integer('student_year');
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();

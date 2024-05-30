@@ -12,6 +12,11 @@
     color: rgb(226 232 240);
 }
 
+.disabled-input-v2 {
+    pointer-events: none;
+    cursor: default;
+}
+
 .text-blue-important {
     color: rgb(37 99 235) !important;
 }
@@ -25,3 +30,36 @@
     --tw-border-opacity: 1;
     border-color: rgb(226 232 240/var(--tw-border-opacity));
 }
+
+/* Start tiptap WYSIWYG editor css */
+[contenteditable="true"]:focus {
+    outline: none;
+}
+
+.link-active {
+    color: rgb(59 130 246) !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: #3b82f6 !important;
+    cursor: pointer !important;
+}
+
+.order-list {
+    list-style-type: decimal;
+    list-style-position: inside;
+    padding-inline-start: 1.25rem;
+}
+
+.order-list p {
+    display: inline;
+}
+
+.bullet-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-inline-start: 1.25rem;
+}
+
+.bullet-list p {
+    display: inline;
+}
+/* End tiptap WYSIWYG editor css */

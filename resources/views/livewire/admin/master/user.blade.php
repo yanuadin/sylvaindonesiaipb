@@ -19,22 +19,23 @@
             >
                 <x-slot:content-modal>
                     <form wire:submit.prevent="{{ $submitMethod }}" class="p-4 md:p-5">
+                        @csrf
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
-                                <x-flowbite.label modelName="name" text="Nama"/>
+                                <x-flowbite.label modelName="name" text="Nama" isRequired="true"/>
                                 <x-flowbite.input type="text" modelName="name" placeholder="Masukkan nama" :is-disabled="$isViewMode"/>
                             </div>
                             <div class="col-span-2">
-                                <x-flowbite.label modelName="username" text="Username"/>
+                                <x-flowbite.label modelName="username" text="Username" isRequired="true"/>
                                 <x-flowbite.input type="text" modelName="username" placeholder="Masukkan username" :is-disabled="$isViewMode"/>
                             </div>
                             @if(!$isEditMode && !$isViewMode)
                                 <div class="col-span-2">
-                                    <x-flowbite.label modelName="password" text="Password"/>
+                                    <x-flowbite.label modelName="password" text="Password" isRequired="true"/>
                                     <x-flowbite.input type="password" modelName="password"/>
                                 </div>
                                 <div class="col-span-2">
-                                    <x-flowbite.label modelName="password_confirmation" text="Confirm Password"/>
+                                    <x-flowbite.label modelName="password_confirmation" text="Confirm Password" isRequired="true"/>
                                     <x-flowbite.input type="password" modelName="password_confirmation"/>
                                 </div>
                             @endif
