@@ -79,9 +79,9 @@
                                 </div>
                             @endif
                             <div class="col-span-1">
-                                <x-flowbite.label modelName="is_public" text="Publik"/>
+                                <x-flowbite.label modelName="status" text="Publik"/>
                                 <label class="inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" wire:model="is_public" value="true" class="sr-only peer" {{ $is_public ? 'checked' : '' }} {{ $isViewMode ? 'disabled' : '' }}>
+                                    <input type="checkbox" wire:model="status" value="" class="sr-only peer" {{ $status === 'public' ? 'checked' : '' }} {{ $isViewMode ? 'disabled' : '' }}>
                                     <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                 </label>
                             </div>
@@ -106,6 +106,41 @@
             </x-flowbite.modal>
         </x-slot:button>
 
+        <x-slot:filter>
+            <div class="flex items-center space-x-1 w-full md:w-auto">
+                <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
+                        class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                        type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                         class="h-4 w-4 mr-2 text-gray-400" viewbox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                              clip-rule="evenodd" />
+                    </svg>
+                    Filter
+                    <svg class="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path clip-rule="evenodd" fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                    </svg>
+                </button>
+                <div id="filterDropdown"
+                     class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Filter Status -->
+                    <div class="mb-2">
+                        <x-flowbite.label modelName="filterStatus" text="Status"/>
+                        <x-flowbite.filter modelName="filterStatus" :selectedValue="$filterStatus" :options="$filterStatusList"/>
+                    </div>
+
+                    <!-- Filter Tag -->
+                    <div>
+                        <x-flowbite.label modelName="filterTag" text="Tag"/>
+                        <x-flowbite.filter modelName="filterTag" :selectedValue="$filterTag" :options="$filterTagList"/>
+                    </div>
+                </div>
+            </div>
+        </x-slot:filter>
+
         <x-slot:table>
             @foreach($articles as $keyData => $data)
                 <tr class="border-b dark:border-gray-700">
@@ -116,7 +151,7 @@
                             <div class="mb-2"><span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $tag['text'] }}</span></div>
                         @endforeach
                     </td>
-                    <td class="px-4 py-3">{{ $data['is_public'] ? 'Publik' : 'Privat' }}</td>
+                    <td class="px-4 py-3">{{ $data['status'] === 'public' ? 'Publik' : 'Privat' }}</td>
                     <td class="px-4 py-3">{{ $data['student_name'] }}</td>
                     <td class="px-4 py-3">{{ $data['student_year'] }}</td>
                     <td class="px-4 py-3 flex items-center justify-end" wire:key="{{ 'action-' . $keyData }}">

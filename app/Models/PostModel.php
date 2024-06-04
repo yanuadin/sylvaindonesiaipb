@@ -11,7 +11,7 @@ class PostModel extends Model
     use HasFactory;
 
     protected $table = 'posts';
-    protected $fillable = ['type', 'title', 'slug', 'tags', 'content', 'image', 'is_public', 'student_name', 'student_year', 'created_by', 'updated_by'];
+    protected $fillable = ['type', 'title', 'slug', 'tags', 'content', 'image', 'status', 'student_name', 'student_year', 'created_by', 'updated_by'];
     public const TYPE_ARTICLE = 'article';
     public const TYPE_SYLVA_NEWS = 'sylva_news';
     public const TYPE_SYLVA_DISCUSSION = 'sylva_discussion';
@@ -19,6 +19,8 @@ class PostModel extends Model
     public const TAG_NEWS = 'news';
     public const TAG_SCIENCE = 'sains';
     public const TAG_HOT = 'hot';
+    public const STATUS_PUBLIC = 'public';
+    public const STATUS_PRIVATE = 'private';
 
     protected function tags(): Attribute
     {
@@ -65,6 +67,20 @@ class PostModel extends Model
             [
                 'text' => 'Trending',
                 'value' => self::TAG_HOT,
+            ],
+        ];
+    }
+
+    public static function getStatuses(): array
+    {
+        return [
+            [
+                'text' => 'Publik',
+                'value' => self::STATUS_PUBLIC,
+            ],
+            [
+                'text' => 'Privat',
+                'value' => self::STATUS_PRIVATE
             ],
         ];
     }

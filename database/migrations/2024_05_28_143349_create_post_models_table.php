@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('tags')->nullable();
             $table->text('content');
             $table->string('image')->nullable();
-            $table->boolean('is_public')->default(true);
+            $table->string('status')->default('public');
             $table->string('student_name');
             $table->integer('student_year');
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();

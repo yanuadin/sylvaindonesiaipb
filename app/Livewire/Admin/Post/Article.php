@@ -25,10 +25,12 @@ class Article extends Component
     public array $tags = [];
     public string $content = '';
     public $image;
-    public bool $is_public = true;
+    public string $status = 'public';
     public string $student_name = '';
     public string $student_year = '';
     public string $search = '';
+    public string $filterStatus = '';
+    public string $filterTag = '';
     public string $selectedTag = '';
 
     /**
@@ -39,7 +41,7 @@ class Article extends Component
     public array $tableHead = [
         'title' => 'Judul',
         'tags' => 'Tag',
-        'is_public' => 'Status',
+        'status' => 'Status',
         'student_name' => 'Nama Mahasiswa',
         'student_year' => 'Angkatan',
     ];
@@ -48,21 +50,35 @@ class Article extends Component
     public bool $isViewMode = false;
     public PostModel $post;
 
+    public function tes()
+    {
+
+    }
     public function render()
     {
         $search = $this->search;
+        $filterStatus = $this->filterStatus;
+        $filterTag = $this->filterTag;
+
         $articles = PostModel::query()
             ->when(!empty($search), function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                     ->orWhere('student_name', 'like', "%{$search}%")
                     ->orWhere('student_year', 'like', "%{$search}%");
             })
+            ->when(!empty($filterStatus), fn ($q) => $q->where('status', $filterStatus))
+            ->when(!empty($filterTag), fn ($q) => $q->whereRaw("JSON_SEARCH(tags, 'all', ?) IS NOT NULL", ["%{$filterTag}%"]))
             ->where('type', PostModel::TYPE_ARTICLE)
             ->paginate(10)
             ->withQueryString();
 
         return view('livewire.admin.post.article')
-            ->with(['articles' => $articles, 'tagLists' => PostModel::getTags()]);
+            ->with([
+                'articles' => $articles,
+                'tagLists' => PostModel::getTags(),
+                'filterStatusList' => PostModel::getStatuses(),
+                'filterTagList' => PostModel::getTags(),
+            ]);
     }
 
     public function rules(PostModel $post = null): array
@@ -78,7 +94,7 @@ class Article extends Component
             'tags.*' => ['nullable', 'string'],
             'content' => ['required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
-            'is_public' => ['required', 'boolean'],
+            'status' => ['required', 'string'],
             'student_name' => ['required', 'string', 'max:255'],
             'student_year' => ['required', 'digits:4', 'integer', 'min:1900', 'max:' . (date('Y')+1)],
         ];
@@ -88,6 +104,7 @@ class Article extends Component
     {
         $this->type = PostModel::TYPE_ARTICLE;
         $this->slug = Str::slug($this->title);
+        $this->status = empty($this->status) ? 'private' : 'public';
 
         $validated = $this->validate($this->rules());
         $validated['image'] = $this->storeFile($validated['image'], $this->type, $this->slug);
@@ -99,7 +116,7 @@ class Article extends Component
             'tags' => json_encode($validated['tags']),
             'content' => $validated['content'],
             'image' => $validated['image'],
-            'is_public' => $validated['is_public'],
+            'status' => $validated['status'],
             'student_name' => $validated['student_name'],
             'student_year' => $validated['student_year'],
             'created_by' => auth()->user()->id,
@@ -117,6 +134,7 @@ class Article extends Component
         }, $this->tags));
         if(is_string($this->image))
             $this->image = null;
+        $this->status = empty($this->status) ? 'private' : 'public';
 
         $validated = $this->validate($this->rules($this->post));
         $validated['image'] = $this->updateFile($validated['image'], $this->type, $this->post, 'image', $this->slug);
@@ -126,7 +144,7 @@ class Article extends Component
         $this->post->tags = json_encode($validated['tags']);
         $this->post->content = $validated['content'];
         $this->post->image = $validated['image'];
-        $this->post->is_public = $validated['is_public'];
+        $this->post->status = $validated['status'];
         $this->post->student_name = $validated['student_name'];
         $this->post->student_year = $validated['student_year'];
         $this->post->updated_by = auth()->user()->id;
@@ -168,7 +186,7 @@ class Article extends Component
         $this->tags = $post->tags;
         $this->content = $post->content;
         $this->image = $post->image;
-        $this->is_public = $post->is_public;
+        $this->status = $post->status;
         $this->student_name = $post->student_name;
         $this->student_year = $post->student_year;
         $this->post = $post;
