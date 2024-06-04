@@ -16,9 +16,6 @@ class PostModel extends Model
     public const TYPE_SYLVA_NEWS = 'sylva_news';
     public const TYPE_SYLVA_DISCUSSION = 'sylva_discussion';
     public const TYPE_SYLVA_TRAINING = 'sylva_training';
-    public const TAG_NEWS = 'news';
-    public const TAG_SCIENCE = 'sains';
-    public const TAG_HOT = 'hot';
     public const STATUS_PUBLIC = 'public';
     public const STATUS_PRIVATE = 'private';
 
@@ -53,24 +50,6 @@ class PostModel extends Model
         ];
     }
 
-    public static function getTags(): array
-    {
-        return [
-            [
-                'text' => 'Berita',
-                'value' => self::TAG_NEWS,
-            ],
-            [
-                'text' => 'Sains',
-                'value' => self::TAG_SCIENCE,
-            ],
-            [
-                'text' => 'Trending',
-                'value' => self::TAG_HOT,
-            ],
-        ];
-    }
-
     public static function getStatuses(): array
     {
         return [
@@ -87,8 +66,8 @@ class PostModel extends Model
 
     public static function getTag($tagValue): array
     {
-        return array_values(array_filter(PostModel::getTags(), function ($tag) use ($tagValue) {
-            return $tag['value'] == $tagValue;
+        return array_values(array_filter(TagModel::query()->get()->toArray(), function ($tag) use ($tagValue) {
+            return $tag['code'] == $tagValue;
         }));
     }
 

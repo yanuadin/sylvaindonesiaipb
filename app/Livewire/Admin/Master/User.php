@@ -50,7 +50,7 @@ class User extends Component
         if ($user === null) {
             $rules = [
                 'name' => ['required', 'string', 'max:255'],
-                'username' => ['required', 'string', 'max:255', 'unique:users,username'],
+                'username' => ['required', 'string', 'max:255', Rule::unique('users')],
                 'password' => $this->passwordRules(),
                 'password_confirmation' => ['required', 'string'],
             ];

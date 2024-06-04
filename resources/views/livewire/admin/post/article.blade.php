@@ -31,7 +31,7 @@
                             <div class="col-span-4">
                                 <x-flowbite.label modelName="content" text="Konten" isRequired="true"/>
                                 @if($isViewMode)
-                                    <textarea id="content" rows="17" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>{!! $content !!}</textarea>
+                                    <div id="content" rows="17" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled readonly>{!! $content !!}</div>
                                 @else
                                     <x-flowbite.editor wire:model="content" :isDisabled="!$isViewMode"/>
                                     @error('content') <span class="text-sm text-red-600 dark:text-red-500">{{ $message }}</span> @enderror
@@ -41,7 +41,7 @@
                                 <x-flowbite.label modelName="tags" text="Tag"/>
                                 @foreach($tags as $key => $tag)
                                     <span wire:key="badge-{{ $key }}" id="badge-dismiss-default" class="mb-3 inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
-                                        {{ is_array($tag) ? $tag['text'] : self::getTextSelectedTags($tag) }}
+                                        {{ is_array($tag) ? $tag['name'] : self::getTextSelectedTags($tag) }}
                                         @if(!$isViewMode)
                                             <button wire:click="removeTag({{ $key }})" type="button" class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
                                                 <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -55,8 +55,8 @@
                                 @if(!$isViewMode)
                                     <select wire:model="selectedTag" wire:change="addTag" id="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected>Pilih tags</option>
-                                        @foreach($tagLists as $option)
-                                            <option value="{{ $option['value'] }}">{{ $option['text'] }}</option>
+                                        @foreach($tagList as $option)
+                                            <option value="{{ $option['code'] }}">{{ $option['name'] }}</option>
                                         @endforeach
                                     </select>
                                 @endif
@@ -129,13 +129,13 @@
                     <!-- Filter Status -->
                     <div class="mb-2">
                         <x-flowbite.label modelName="filterStatus" text="Status"/>
-                        <x-flowbite.filter modelName="filterStatus" :selectedValue="$filterStatus" :options="$filterStatusList"/>
+                        <x-flowbite.filter modelName="filterStatus" :selectedValue="$filterStatus" :options="$statusList"/>
                     </div>
 
                     <!-- Filter Tag -->
                     <div>
                         <x-flowbite.label modelName="filterTag" text="Tag"/>
-                        <x-flowbite.filter modelName="filterTag" :selectedValue="$filterTag" :options="$filterTagList"/>
+                        <x-flowbite.filter modelName="filterTag" :selectedValue="$filterTag" :options="$tagList" value="code" text="name"/>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                     <td class="px-4 py-3">{{ $data['title'] }}</td>
                     <td class="px-4 py-3">
                         @foreach($data['tags'] as $tag)
-                            <div class="mb-2"><span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $tag['text'] }}</span></div>
+                            <div class="mb-2"><span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $tag['name'] }}</span></div>
                         @endforeach
                     </td>
                     <td class="px-4 py-3">{{ $data['status'] === 'public' ? 'Publik' : 'Privat' }}</td>

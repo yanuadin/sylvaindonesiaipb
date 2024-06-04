@@ -70,6 +70,12 @@ $menus = [
                 'route_name' => 'admin.master.user',
                 'control_name' => 'dropdown-master',
                 'icon' => ''
+            ],
+            [
+                'name' => 'Tag',
+                'route_name' => 'admin.master.tag',
+                'control_name' => 'dropdown-tag',
+                'icon' => ''
             ]
         ]
     ],

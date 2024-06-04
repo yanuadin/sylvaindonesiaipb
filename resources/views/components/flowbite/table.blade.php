@@ -88,7 +88,7 @@
                 aria-label="Table navigation">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     Showing
-                    <span class="font-semibold text-gray-900 dark:text-white">1-{{ $datas->count() }}</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">{{ $datas->firstItem() }}-{{ $datas->firstItem() + $datas->count() - 1 }}</span>
                     of
                     <span class="font-semibold text-gray-900 dark:text-white">{{ $datas->total() }}</span>
                 </span>

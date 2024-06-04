@@ -23,4 +23,5 @@ Route::middleware([
     Route::get('/dashboard', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
     Route::get('/post/article', \App\Livewire\Admin\Post\Article::class)->name('admin.post.article');
     Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
+    Route::get('/master/tag', \App\Livewire\Admin\Master\Tag::class)->name('admin.master.tag');
 });

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Post;
 
 use App\Models\PostModel;
+use App\Models\TagModel;
 use App\Models\UserModel;
 use App\Traits\FileProcess;
 use Illuminate\Http\Request;
@@ -75,16 +76,15 @@ class Article extends Component
         return view('livewire.admin.post.article')
             ->with([
                 'articles' => $articles,
-                'tagLists' => PostModel::getTags(),
-                'filterStatusList' => PostModel::getStatuses(),
-                'filterTagList' => PostModel::getTags(),
+                'tagList' => TagModel::query()->get(),
+                'statusList' => PostModel::getStatuses(),
             ]);
     }
 
     public function rules(PostModel $post = null): array
     {
         $rule_slug = $post === null ?
-            ['required', 'string', 'max:255'] :
+            ['required', 'string', 'max:255', Rule::unique('posts')] :
             ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)];
 
         return [
@@ -104,7 +104,7 @@ class Article extends Component
     {
         $this->type = PostModel::TYPE_ARTICLE;
         $this->slug = Str::slug($this->title);
-        $this->status = empty($this->status) ? 'private' : 'public';
+        $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
         $validated = $this->validate($this->rules());
         $validated['image'] = $this->storeFile($validated['image'], $this->type, $this->slug);
@@ -130,11 +130,12 @@ class Article extends Component
     {
         $this->slug = Str::slug($this->title);
         $this->tags = array_values(array_map(function ($tag) {
-            return is_array($tag) ? $tag['value'] : $tag;
+            return is_array($tag) ? $tag['code'] : $tag;
         }, $this->tags));
         if(is_string($this->image))
             $this->image = null;
-        $this->status = empty($this->status) ? 'private' : 'public';
+
+        $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
         $validated = $this->validate($this->rules($this->post));
         $validated['image'] = $this->updateFile($validated['image'], $this->type, $this->post, 'image', $this->slug);
@@ -203,6 +204,7 @@ class Article extends Component
     public function removeTag(int $index): void
     {
         unset($this->tags[$index]);
+        $this->tags = array_values($this->tags);
     }
 
     public function getTextSelectedTags($tagSelected): string
@@ -210,7 +212,7 @@ class Article extends Component
         //Reset Index
         $filteredTags = PostModel::getTag($tagSelected);
 
-        return $filteredTags[0]['text'];
+        return $filteredTags[0]['name'];
     }
 
     /**

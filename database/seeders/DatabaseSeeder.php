@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\UserModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,10 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\UserModel::factory(10)->create();
 
-         UserModel::query()->create([
-             'name' => 'Admin',
-             'username' => 'admin',
-             'password' => Hash::make('password'),
+         $this->call([
+             UserSeeder::class,
+             TagSeeder::class
          ]);
     }
 }
