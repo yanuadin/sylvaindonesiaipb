@@ -51,10 +51,6 @@ class Article extends Component
     public bool $isViewMode = false;
     public PostModel $post;
 
-    public function tes()
-    {
-
-    }
     public function render()
     {
         $search = $this->search;
@@ -209,10 +205,9 @@ class Article extends Component
 
     public function getTextSelectedTags($tagSelected): string
     {
-        //Reset Index
-        $filteredTags = PostModel::getTag($tagSelected);
+        $tag = TagModel::query()->where('code', $tagSelected)->first();
 
-        return $filteredTags[0]['name'];
+        return $tag['name'];
     }
 
     /**

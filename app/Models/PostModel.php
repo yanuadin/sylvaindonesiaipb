@@ -22,9 +22,7 @@ class PostModel extends Model
     protected function tags(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => array_map(function ($tag) {
-                return self::getTag($tag)[0];
-            }, json_decode($value)),
+            get: fn ($value) => TagModel::query()->whereIn('code', json_decode($value))->get()->toArray(),
         );
     }
 
@@ -62,13 +60,6 @@ class PostModel extends Model
                 'value' => self::STATUS_PRIVATE
             ],
         ];
-    }
-
-    public static function getTag($tagValue): array
-    {
-        return array_values(array_filter(TagModel::query()->get()->toArray(), function ($tag) use ($tagValue) {
-            return $tag['code'] == $tagValue;
-        }));
     }
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
