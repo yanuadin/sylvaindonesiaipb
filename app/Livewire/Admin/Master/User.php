@@ -39,6 +39,7 @@ class User extends Component
             ->when(!empty($search), function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")->orWhere('username', 'like', "%{$search}%");
             })
+            ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 

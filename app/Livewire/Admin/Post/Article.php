@@ -66,6 +66,7 @@ class Article extends Component
             ->when(!empty($filterStatus), fn ($q) => $q->where('status', $filterStatus))
             ->when(!empty($filterTag), fn ($q) => $q->whereRaw("JSON_SEARCH(tags, 'all', ?) IS NOT NULL", ["%{$filterTag}%"]))
             ->where('type', PostModel::TYPE_ARTICLE)
+            ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 
@@ -102,7 +103,9 @@ class Article extends Component
         $this->slug = Str::slug($this->title);
         $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
-        $validated = $this->validate($this->rules());
+        $validated = $this->validate($this->rules(), [
+            'slug.unique' => 'The title has already been taken.'
+        ]);
         $validated['image'] = $this->storeFile($validated['image'], $this->type, $this->slug);
 
         PostModel::query()->create([
@@ -133,7 +136,9 @@ class Article extends Component
 
         $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
-        $validated = $this->validate($this->rules($this->post));
+        $validated = $this->validate($this->rules($this->post), [
+            'slug.unique' => 'The title has already been taken.'
+        ]);
         $validated['image'] = $this->updateFile($validated['image'], $this->type, $this->post, 'image', $this->slug);
 
         $this->post->title = $validated['title'];

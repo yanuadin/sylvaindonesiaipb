@@ -27,6 +27,7 @@
                             <div class="col-span-4">
                                 <x-flowbite.label modelName="title" text="Judul" isRequired="true"/>
                                 <x-flowbite.input type="text" modelName="title" placeholder="Masukkan judul" :is-disabled="$isViewMode"/>
+                                @error('slug') <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <div class="col-span-4">
                                 <x-flowbite.label modelName="content" text="Konten" isRequired="true"/>
