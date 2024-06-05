@@ -3,7 +3,7 @@
 <section class="bg-gray-50 dark:bg-gray-900">
     <div class="mx-auto max-w-screen-xl">
         <!-- Start coding here -->
-        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden min-h-80vh">
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden min-h-85vh">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">
@@ -88,7 +88,11 @@
                 aria-label="Table navigation">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     Showing
-                    <span class="font-semibold text-gray-900 dark:text-white">{{ $datas->firstItem() }}-{{ $datas->firstItem() + $datas->count() - 1 }}</span>
+                    @if($datas->count() !== 0)
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $datas->firstItem() }}-{{ $datas->firstItem() + $datas->count() - 1 }}</span>
+                    @else
+                        <span class="font-semibold text-gray-900 dark:text-white">0</span>
+                    @endif
                     of
                     <span class="font-semibold text-gray-900 dark:text-white">{{ $datas->total() }}</span>
                 </span>

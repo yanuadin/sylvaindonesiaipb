@@ -11,7 +11,7 @@
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Tambah Kabar Sylva
+                Tambah Diskusi Sylva
             </button>
 
             <!-- Form Modal -->
@@ -86,14 +86,6 @@
                                     <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                 </label>
                             </div>
-                            <div class="col-span-2">
-                                <x-flowbite.label modelName="student_name" text="Nama Mahasiswa" isRequired="true"/>
-                                <x-flowbite.input type="text" modelName="student_name" placeholder="Masukkan nama mahasiswa" :is-disabled="$isViewMode"/>
-                            </div>
-                            <div class="col-span-1">
-                                <x-flowbite.label modelName="student_year" text="Tahun Angkatan Mahasiswa" isRequired="true"/>
-                                <x-flowbite.input type="number" modelName="student_year" placeholder="Masukkan tahun angkatan mahasiswa" :is-disabled="$isViewMode"/>
-                            </div>
                         </div>
 
                         <div class="flex {{ $isViewMode ? 'justify-center' : 'justify-between' }} items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -153,8 +145,6 @@
                         @endforeach
                     </td>
                     <td class="px-4 py-3">{{ $data['status'] === 'public' ? 'Publik' : 'Privat' }}</td>
-                    <td class="px-4 py-3">{{ $data['student_name'] }}</td>
-                    <td class="px-4 py-3">{{ $data['student_year'] }}</td>
                     <td class="px-4 py-3 flex items-center justify-end" wire:key="{{ 'action-' . $keyData }}">
                         <button wire:click="showViewModal({{ $data->id }})" data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">

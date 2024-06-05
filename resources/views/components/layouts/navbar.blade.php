@@ -67,7 +67,7 @@
                 <div class="py-3 px-4">
               <span
                   class="block text-sm font-semibold text-gray-900 dark:text-white"
-              >{{ auth()->user()->name }}</span
+              >{{ auth()->check() ? auth()->user()->name : 'Sylva IPB' }}</span
               >
                 </div>
                 <ul

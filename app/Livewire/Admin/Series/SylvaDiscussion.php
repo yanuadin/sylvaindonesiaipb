@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Post;
+namespace App\Livewire\Admin\Series;
 
 use App\Models\PostModel;
 use App\Models\TagModel;
@@ -11,7 +11,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 
-class SylvaNews extends Component
+class SylvaDiscussion extends Component
 {
     use WithFileUploads, FileProcess;
 
@@ -25,8 +25,6 @@ class SylvaNews extends Component
     public string $content = '';
     public $image;
     public string $status = 'public';
-    public string $student_name = '';
-    public string $student_year = '';
     public string $search = '';
     public string $filterStatus = '';
     public string $filterTag = '';
@@ -35,14 +33,12 @@ class SylvaNews extends Component
     /**
      * @description : other
      */
-    public string $titleModal = 'Tambah Kabar Sylva';
+    public string $titleModal = 'Tambah Diskusi Sylva';
     public string $dataModal = 'create-article-modal';
     public array $tableHead = [
         'title' => 'Judul',
         'tags' => 'Tag',
         'status' => 'Status',
-        'student_name' => 'Nama Mahasiswa',
-        'student_year' => 'Angkatan',
     ];
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
@@ -57,18 +53,16 @@ class SylvaNews extends Component
 
         $articles = PostModel::query()
             ->when(!empty($search), function ($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                    ->orWhere('student_name', 'like', "%{$search}%")
-                    ->orWhere('student_year', 'like', "%{$search}%");
+                $q->where('title', 'like', "%{$search}%");
             })
             ->when(!empty($filterStatus), fn ($q) => $q->where('status', $filterStatus))
             ->when(!empty($filterTag), fn ($q) => $q->whereRaw("JSON_SEARCH(tags, 'all', ?) IS NOT NULL", ["%{$filterTag}%"]))
-            ->where('type', PostModel::TYPE_SYLVA_NEWS)
+            ->where('type', PostModel::TYPE_SYLVA_DISCUSSION)
             ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 
-        return view('livewire.admin.post.sylva-news')
+        return view('livewire.admin.series.sylva-discussion')
             ->with([
                 'articles' => $articles,
                 'tagList' => TagModel::query()->get(),
@@ -90,14 +84,12 @@ class SylvaNews extends Component
             'content' => ['required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
             'status' => ['required', 'string'],
-            'student_name' => ['required', 'string', 'max:255'],
-            'student_year' => ['required', 'digits:4', 'integer', 'min:1900', 'max:' . (date('Y')+1)],
         ];
     }
 
     public function store(): void
     {
-        $this->type = PostModel::TYPE_SYLVA_NEWS;
+        $this->type = PostModel::TYPE_SYLVA_DISCUSSION;
         $this->slug = Str::slug($this->title);
         $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
@@ -114,13 +106,11 @@ class SylvaNews extends Component
             'content' => $validated['content'],
             'image' => $validated['image'],
             'status' => $validated['status'],
-            'student_name' => $validated['student_name'],
-            'student_year' => $validated['student_year'],
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id
         ]);
 
-        $this->redirectRoute('admin.post.sylva-news');
+        $this->redirectRoute('admin.series.sylva-discussion');
     }
 
     public function update(): void
@@ -145,12 +135,10 @@ class SylvaNews extends Component
         $this->post->content = $validated['content'];
         $this->post->image = $validated['image'];
         $this->post->status = $validated['status'];
-        $this->post->student_name = $validated['student_name'];
-        $this->post->student_year = $validated['student_year'];
         $this->post->updated_by = auth()->user()->id;
         $this->post->save();
 
-        $this->redirectRoute('admin.post.sylva-news');
+        $this->redirectRoute('admin.series.sylva-discussion');
     }
 
     public function delete(PostModel $post): void
@@ -158,13 +146,13 @@ class SylvaNews extends Component
         $this->deleteFile($post, 'image');
         $post->delete();
 
-        $this->redirectRoute('admin.post.sylva-news');
+        $this->redirectRoute('admin.series.sylva-discussion');
     }
 
     public function showViewModal(PostModel $post): void
     {
         $this->submitMethod = '';
-        $this->titleModal = 'Lihat Kabar Sylva';
+        $this->titleModal = 'Lihat Diskusi Sylva';
         $this->isViewMode = true;
 
         $this->fillVariable($post);
@@ -173,7 +161,7 @@ class SylvaNews extends Component
     public function showEditModal(PostModel $post): void
     {
         $this->submitMethod = 'update';
-        $this->titleModal = 'Edit Kabar Sylva';
+        $this->titleModal = 'Edit Diskusi Sylva';
         $this->isEditMode = true;
 
         $this->fillVariable($post);
@@ -187,8 +175,6 @@ class SylvaNews extends Component
         $this->content = $post->content;
         $this->image = $post->image;
         $this->status = $post->status;
-        $this->student_name = $post->student_name;
-        $this->student_year = $post->student_year;
         $this->post = $post;
     }
 
