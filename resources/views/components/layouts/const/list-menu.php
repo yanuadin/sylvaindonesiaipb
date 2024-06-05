@@ -39,7 +39,7 @@ $menus = [
         ',
         'childs' => [
             [
-                'name' => 'Sylva News',
+                'name' => 'Kabar Sylva',
                 'route_name' => 'admin.post.sylva-news',
                 'control_name' => 'dropdown-post',
                 'icon' => '',
@@ -57,8 +57,14 @@ $menus = [
         ',
         'childs' => [
             [
-                'name' => 'Sylva Discussion',
+                'name' => 'Diskusi Sylva',
                 'route_name' => 'admin.series.sylva-discussion',
+                'control_name' => 'dropdown-series',
+                'icon' => '',
+            ],
+            [
+                'name' => 'Pelatihan Sylva',
+                'route_name' => 'admin.series.sylva-training',
                 'control_name' => 'dropdown-series',
                 'icon' => '',
             ]

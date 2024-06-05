@@ -27,6 +27,7 @@ Route::middleware([
 
     //Series
     Route::get('/series/sylva-discussion', \App\Livewire\Admin\Series\SylvaDiscussion::class)->name('admin.series.sylva-discussion');
+    Route::get('/series/sylva-training', \App\Livewire\Admin\Series\SylvaTraining::class)->name('admin.series.sylva-training');
 
     //Master
     Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
