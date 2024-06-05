@@ -4,16 +4,14 @@ namespace App\Livewire\Admin\Post;
 
 use App\Models\PostModel;
 use App\Models\TagModel;
-use App\Models\UserModel;
 use App\Traits\FileProcess;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 
-class Article extends Component
+class SylvaNews extends Component
 {
     use WithFileUploads, FileProcess;
 
@@ -65,12 +63,12 @@ class Article extends Component
             })
             ->when(!empty($filterStatus), fn ($q) => $q->where('status', $filterStatus))
             ->when(!empty($filterTag), fn ($q) => $q->whereRaw("JSON_SEARCH(tags, 'all', ?) IS NOT NULL", ["%{$filterTag}%"]))
-            ->where('type', PostModel::TYPE_ARTICLE)
+            ->where('type', PostModel::TYPE_SYLVA_NEWS)
             ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 
-        return view('livewire.admin.post.article')
+        return view('livewire.admin.post.sylva-news')
             ->with([
                 'articles' => $articles,
                 'tagList' => TagModel::query()->get(),
@@ -99,7 +97,7 @@ class Article extends Component
 
     public function store(): void
     {
-        $this->type = PostModel::TYPE_ARTICLE;
+        $this->type = PostModel::TYPE_SYLVA_NEWS;
         $this->slug = Str::slug($this->title);
         $this->status = empty($this->status) || $this->status === 'private' ? 'private' : 'public';
 
@@ -122,7 +120,7 @@ class Article extends Component
             'updated_by' => auth()->user()->id
         ]);
 
-        $this->redirectRoute('admin.post.article');
+        $this->redirectRoute('admin.post.sylva-news');
     }
 
     public function update(): void
@@ -152,7 +150,7 @@ class Article extends Component
         $this->post->updated_by = auth()->user()->id;
         $this->post->save();
 
-        $this->redirectRoute('admin.post.article');
+        $this->redirectRoute('admin.post.sylva-news');
     }
 
     public function delete(PostModel $post): void
@@ -160,7 +158,7 @@ class Article extends Component
         $this->deleteFile($post, 'image');
         $post->delete();
 
-        $this->redirectRoute('admin.post.article');
+        $this->redirectRoute('admin.post.sylva-news');
     }
 
     public function showViewModal(PostModel $post): void
@@ -216,8 +214,8 @@ class Article extends Component
     }
 
     /**
-    * @description : default resetting all form
-    */
+     * @description : default resetting all form
+     */
     #[On('resetForm')]
     public function resetForm(): void
     {

@@ -39,8 +39,8 @@ $menus = [
         ',
         'childs' => [
             [
-                'name' => 'Artikel',
-                'route_name' => 'admin.post.article',
+                'name' => 'Sylva News',
+                'route_name' => 'admin.post.sylva-news',
                 'control_name' => 'dropdown-post',
                 'icon' => '',
             ]
