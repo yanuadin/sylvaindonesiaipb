@@ -24,6 +24,7 @@ Route::middleware([
 
     //Post
     Route::get('/post/sylva-news', \App\Livewire\Admin\Post\SylvaNews::class)->name('admin.post.sylva-news');
+    Route::get('/post/album', \App\Livewire\Admin\Post\Album::class)->name('admin.post.album');
 
     //Series
     Route::get('/series/sylva-discussion', \App\Livewire\Admin\Series\SylvaDiscussion::class)->name('admin.series.sylva-discussion');

@@ -128,5 +128,6 @@ class User extends Component
     public function resetForm(): void
     {
         $this->reset();
+        $this->resetValidation();
     }
 }

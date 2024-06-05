@@ -206,5 +206,6 @@ class SylvaTraining extends Component
     public function resetForm(): void
     {
         $this->reset();
+        $this->resetValidation();
     }
 }

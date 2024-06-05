@@ -43,6 +43,12 @@ $menus = [
                 'route_name' => 'admin.post.sylva-news',
                 'control_name' => 'dropdown-post',
                 'icon' => '',
+            ],
+            [
+                'name' => 'Album',
+                'route_name' => 'admin.post.album',
+                'control_name' => 'dropdown-post',
+                'icon' => '',
             ]
         ],
     ],

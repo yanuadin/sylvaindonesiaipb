@@ -117,5 +117,6 @@ class Tag extends Component
     public function resetForm(): void
     {
         $this->reset();
+        $this->resetValidation();
     }
 }
