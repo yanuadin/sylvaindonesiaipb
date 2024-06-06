@@ -98,6 +98,7 @@ class Album extends Component
         $this->album->title = $validated['title'];
         $this->album->description = $validated['description'];
         $this->album->image = $validated['image'];
+        $this->album->updated_by = auth()->user()->id;
         $this->album->save();
 
         $this->redirectRoute('admin.post.album');

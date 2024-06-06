@@ -31,6 +31,11 @@ class About extends Component
         $search = $this->search;
 
         $abouts = AboutModel::query()
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->where('about', 'like', "%{$search}%")
+                    ->orWhere('history', 'like', "%{$search}%");
+            })
+            ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 
@@ -43,7 +48,7 @@ class About extends Component
             'about' => ['required', 'string',],
             'history' => ['required', 'string'],
         ];
-        
+
     }
 
     public function store(): void
@@ -66,6 +71,7 @@ class About extends Component
 
         $this->aboutModel->about = $validated['about'];
         $this->aboutModel->history = $validated['history'];
+        $this->aboutModel->updated_by = auth()->user()->id;
         $this->aboutModel->save();
 
         $this->redirectRoute('admin.post.about');
