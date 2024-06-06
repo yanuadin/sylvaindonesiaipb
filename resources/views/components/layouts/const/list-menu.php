@@ -44,12 +44,18 @@ $menus = [
                 'control_name' => 'dropdown-post',
                 'icon' => '',
             ],
-            [
+            [  
                 'name' => 'Album',
                 'route_name' => 'admin.post.album',
                 'control_name' => 'dropdown-post',
                 'icon' => '',
-            ]
+            ],
+            [
+                'name' => 'About',
+                'route_name' => 'admin.post.about',
+                'control_name' => 'dropdown-post',
+                'icon' => '',
+            ],
         ],
     ],
     [
