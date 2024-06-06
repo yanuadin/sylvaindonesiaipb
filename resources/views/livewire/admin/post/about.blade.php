@@ -1,7 +1,7 @@
 <div>
     <x-flowbite.table
         :tableHead="$tableHead"
-        :datas="$albums"
+        :datas="$abouts"
         :dataModal="$dataModal"
         :search="$search"
         isCustom="true"
@@ -11,7 +11,7 @@
                 <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Tambah Album
+                Tambah About
             </button>
 
             <!-- Form Modal -->
@@ -25,30 +25,14 @@
                         @csrf
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-4">
-                                <x-flowbite.label modelName="title" text="Judul" isRequired="true"/>
-                                <x-flowbite.input type="text" modelName="title" placeholder="Masukkan judul" :is-disabled="$isViewMode"/>
+                                <x-flowbite.label modelName="about" text="Tentang" isRequired="true"/>
+                                <x-flowbite.textarea rows="4" modelName="about" placeholder="Masukkan tentang" :is-disabled="$isViewMode"/>
                             </div>
                             <div class="col-span-4">
-                                <x-flowbite.label modelName="description" text="Deskripsi"/>
-                                <x-flowbite.textarea rows="4" modelName="description" placeholder="Masukkan deskripsi" :is-disabled="$isViewMode"/>
+                                <x-flowbite.label modelName="history" text="Sejarah" isRequired="true"/>
+                                <x-flowbite.textarea rows="4" modelName="history" placeholder="Masukkan sejarah" :is-disabled="$isViewMode"/>
                             </div>
-                            @if($image !== null && !is_string($image))
-                                <div class="col-span-4 text-center mx-auto">
-                                    <img class="max-h-96 max-w-full" src="{{ $image->temporaryUrl() }}" alt="Image Preview">
-                                </div>
-                            @endif
-                            @if(is_string($image))
-                                <div class="col-span-4 text-center mx-auto">
-                                    <img class="max-h-96 max-w-full" src="{{ asset('storage/' . $image) }}" alt="Image Preview">
-                                </div>
-                            @endif
-                            @if(!$isViewMode)
-                                <div class="col-span-4">
-                                    <x-flowbite.label modelName="image" text="Gambar" isRequired="true"/>
-                                    <input wire:model="image" class="block w-full text-sm border {{ $errors->has('image') ? 'border-red-500 text-red-900' : 'text-gray-900 border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400'}} rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="image" type="file">
-                                    @error('image') <span class="text-sm text-red-600 dark:text-red-500">{{ $message }}</span> @enderror
-                                </div>
-                            @endif
+                            
                         </div>
 
                         <div class="flex {{ $isViewMode ? 'justify-center' : 'justify-between' }} items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -63,12 +47,11 @@
         </x-slot:button>
 
         <x-slot:table>
-            @foreach($albums as $keyData => $data)
+            @foreach($abouts as $keyData => $data)
                 <tr class="border-b dark:border-gray-700">
-                    <td class="px-4 py-3 w-16">{{ $albums->firstItem() + $keyData }}</td>
-                    <td class="px-4 py-3">{{ $data['title'] }}</td>
-                    <td class="px-4 py-3">{{ $data['description'] }}</td>
-                    <td class="px-4 py-3"><img class="max-w-32 max-h-32" src="{{ asset('storage/' . $data['image']) }}" alt="{{ $data['title'] }}"></td>
+                    <td class="px-4 py-3 w-16">{{ $abouts->firstItem() + $keyData }}</td>
+                    <td class="px-4 py-3">{{ $data['about'] }}</td>
+                    <td class="px-4 py-3">{{ $data['history'] }}</td>
                     <td class="px-4 py-3 flex items-center justify-end" wire:key="{{ 'action-' . $keyData }}">
                         <button wire:click="showViewModal({{ $data->id }})" data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">

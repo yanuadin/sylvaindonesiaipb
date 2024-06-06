@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Post;
 
-use App\Models\AlbumModel;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\AboutModel;
@@ -25,7 +24,7 @@ class About extends Component
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
     public bool $isViewMode = false;
-    public AlbumModel $album;
+    public AboutModel $aboutModel;
 
     public function render()
     {
@@ -40,26 +39,41 @@ class About extends Component
 
     public function rules(): array
     {
-        return [];
+        return [
+            'about' => ['required', 'string',],
+            'history' => ['required', 'string'],
+        ];
+        
     }
 
     public function store(): void
     {
+        $validated = $this->validate($this->rules());
 
+        AboutModel::query()->create([
+            'about' => $validated['about'],
+            'history' => $validated['history'],
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id
+        ]);
 
         $this->redirectRoute('admin.post.about');
     }
 
     public function update(): void
     {
+        $validated = $this->validate($this->rules());
 
+        $this->aboutModel->about = $validated['about'];
+        $this->aboutModel->history = $validated['history'];
+        $this->aboutModel->save();
 
         $this->redirectRoute('admin.post.about');
     }
 
     public function delete(AboutModel $about): void
     {
-
+        $about->delete();
 
         $this->redirectRoute('admin.post.about');
     }
@@ -84,8 +98,9 @@ class About extends Component
 
     private function fillVariable(AboutModel $about): void
     {
-        //$this->variable = $model->field
-        //$this->model = $model
+        $this->about = $about->about;
+        $this->history = $about->history;
+        $this->aboutModel = $about;
     }
 
     /**
