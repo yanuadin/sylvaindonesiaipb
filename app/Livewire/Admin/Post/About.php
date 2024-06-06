@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Post;
 
+use App\Models\AlbumModel;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\AboutModel;
@@ -24,7 +25,7 @@ class About extends Component
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
     public bool $isViewMode = false;
-    public AboutModel $about;
+    public AlbumModel $album;
 
     public function render()
     {
