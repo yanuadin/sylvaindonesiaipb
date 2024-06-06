@@ -8,19 +8,19 @@ use Livewire\Attributes\On;
 class [class] extends Component
 {
     /**
-     * @description : form
-     */
+    * @description : form
+    */
 
     /**
-     * @description : other
-     */
-     public string $titleModal = 'Tambah Livewire';
-     public string $dataModal = 'create-livewire-modal';
-     public array $tableHead = ['header_code' => 'header_name'];
-     public string $submitMethod = 'store';
-     public bool $isEditMode = false;
-     public bool $isViewMode = false;
-     public Model $model;
+    * @description : other
+    */
+    public string $titleModal = 'Tambah Livewire';
+    public string $dataModal = 'create-livewire-modal';
+    public array $tableHead = ['header_code' => 'header_name'];
+    public string $submitMethod = 'store';
+    public bool $isEditMode = false;
+    public bool $isViewMode = false;
+    public Model $model;
 
     public function render()
     {
@@ -84,5 +84,6 @@ class [class] extends Component
     public function resetForm(): void
     {
         $this->reset();
+        $this->resetValidation();
     }
 }

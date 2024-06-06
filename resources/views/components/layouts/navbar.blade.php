@@ -37,11 +37,11 @@
             </button>
             <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
                 <img
-                    src="https://flowbite.s3.amazonaws.com/logo.svg"
+                    src="{{ asset('image/logo_sylva.png') }}"
                     class="mr-3 h-8"
                     alt="Flowbite Logo"
                 />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sylva</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sylva Indonesia IPB</span>
             </a>
         </div>
         <div class="flex items-center lg:order-2">
@@ -55,7 +55,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                     class="w-8 h-8 rounded-full"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                    src="{{ asset('image/avatar_admin.jpg') }}"
                     alt="user photo"
                 />
             </button>
@@ -67,7 +67,7 @@
                 <div class="py-3 px-4">
               <span
                   class="block text-sm font-semibold text-gray-900 dark:text-white"
-              >{{ auth()->user()->name }}</span
+              >{{ auth()->check() ? auth()->user()->name : 'Sylva IPB' }}</span
               >
                 </div>
                 <ul

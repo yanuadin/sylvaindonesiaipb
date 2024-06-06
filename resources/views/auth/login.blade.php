@@ -2,12 +2,12 @@
     <!-- component -->
     <div class="bg-white dark:bg-gray-900">
         <div class="flex justify-center h-screen">
-            <div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url(https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
+            <div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url('{{ asset('image/login_background.jpg') }}')">
                 <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
                     <div>
                         <h2 class="text-4xl font-bold text-white">Sylva Indonesia IPB</h2>
 
-                        <p class="max-w-xl mt-3 text-gray-300">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus molestiae</p>
+                        <p class="max-w-xl mt-3 text-gray-300">Mewujudkan Sylva Indonesia IPB sebagai <em>“Youth Center of Excellence”</em> dan terwujudnya pengelolaan sumber daya hutan yang lestari, adil, dan demokratis.</p>
                     </div>
                 </div>
             </div>

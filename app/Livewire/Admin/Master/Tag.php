@@ -36,6 +36,7 @@ class Tag extends Component
                 $q->where('code', 'like', "%{$search}%")
                     ->orWhere('name', 'like', "%{$search}%");
             })
+            ->orderBy('updated_at', 'DESC')
             ->paginate(10)
             ->withQueryString();
 
@@ -116,5 +117,6 @@ class Tag extends Component
     public function resetForm(): void
     {
         $this->reset();
+        $this->resetValidation();
     }
 }

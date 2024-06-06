@@ -25,6 +25,10 @@
     min-height: 80vh;
 }
 
+.min-h-85vh {
+    min-height: 85vh;
+}
+
 .min-h-90vh {
     min-height: 90vh;
 }

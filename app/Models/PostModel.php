@@ -12,7 +12,6 @@ class PostModel extends Model
 
     protected $table = 'posts';
     protected $fillable = ['type', 'title', 'slug', 'tags', 'content', 'image', 'status', 'student_name', 'student_year', 'created_by', 'updated_by'];
-    public const TYPE_ARTICLE = 'article';
     public const TYPE_SYLVA_NEWS = 'sylva_news';
     public const TYPE_SYLVA_DISCUSSION = 'sylva_discussion';
     public const TYPE_SYLVA_TRAINING = 'sylva_training';
@@ -30,11 +29,7 @@ class PostModel extends Model
     {
         return [
             [
-                'text' => 'Artikel',
-                'value' => self::TYPE_ARTICLE,
-            ],
-            [
-                'text' => 'Sylva News',
+                'text' => 'Kabar Sylva',
                 'value' => self::TYPE_SYLVA_NEWS,
             ],
             [
