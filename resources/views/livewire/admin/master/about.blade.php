@@ -6,6 +6,12 @@
                     @csrf
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-4">
+                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400"><span class="font-medium">Terakhir Update : </span>{{ $updated_at ? \Carbon\Carbon::create($updated_at)->format('j/n/Y') : 'Belum dibuat' }}</p>
+                        </div>
+                        <div class="col-span-4">
+                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400"><span class="font-medium">Oleh : </span>{{ $updated_by ? $updated_by : 'Belum dibuat' }}</p>
+                        </div>
+                        <div class="col-span-4">
                             <x-flowbite.label modelName="about" text="Tentang" isRequired="true"/>
                             <x-flowbite.textarea rows="7" modelName="about" placeholder="Masukkan tentang"/>
                         </div>

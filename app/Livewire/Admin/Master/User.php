@@ -26,7 +26,7 @@ class User extends Component
      */
     public string $titleModal = 'Tambah User';
     public string $dataModal = 'create-user-modal';
-    public array $tableHead = ['name' => 'Name', 'username' => 'Username'];
+    public array $tableHead = ['name' => 'Name', 'username' => 'Username', 'updated_at' => 'Terakhir Update'];
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
     public bool $isViewMode = false;

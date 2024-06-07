@@ -21,7 +21,7 @@ class Tag extends Component
      */
     public string $titleModal = 'Tambah Tag';
     public string $dataModal = 'create-tag-modal';
-    public array $tableHead = ['code' => 'Kode', 'name' => 'Nama Tag'];
+    public array $tableHead = ['code' => 'Kode', 'name' => 'Nama Tag', 'updated_at' => 'Terakhir Update'];
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
     public bool $isViewMode = false;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Post;
+namespace App\Livewire\Admin\Master;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -9,10 +9,12 @@ use App\Models\AboutModel;
 class About extends Component
 {
     /**
-    * @description : form
-    */
+     * @description : form
+     */
     public string $about = '';
     public string $history = '';
+    public $updated_at;
+    public $updated_by;
 
     public function render()
     {
@@ -20,9 +22,11 @@ class About extends Component
         if($about) {
             $this->about = $about->about;
             $this->history = $about->history;
+            $this->updated_at = $about->updated_at;
+            $this->updated_by = $about->updatedBy->name;
         }
 
-        return view('livewire.admin.post.about');
+        return view('livewire.admin.master.about');
     }
 
     public function rules(): array
@@ -53,6 +57,6 @@ class About extends Component
             ]);
         }
 
-        $this->redirectRoute('admin.post.about');
+        $this->redirectRoute('admin.master.about');
     }
 }

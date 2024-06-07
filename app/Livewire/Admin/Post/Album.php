@@ -25,7 +25,7 @@ class Album extends Component
      */
      public string $titleModal = 'Tambah Album';
      public string $dataModal = 'create-album-modal';
-     public array $tableHead = ['title' => 'Judul', 'description' => 'Deskripsi', 'image' => 'Gambar'];
+     public array $tableHead = ['title' => 'Judul', 'description' => 'Deskripsi', 'image' => 'Gambar', 'updated_at' => 'Terakhir Update'];
      public string $submitMethod = 'store';
      public bool $isEditMode = false;
      public bool $isViewMode = false;

@@ -109,7 +109,7 @@ $menus = [
             ],
             [
                 'name' => 'Profil Sylva',
-                'route_name' => 'admin.master.profile',
+                'route_name' => 'admin.master.about',
                 'control_name' => 'dropdown-master',
                 'icon' => '',
             ],

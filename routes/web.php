@@ -35,5 +35,5 @@ Route::middleware([
     //Master
     Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
     Route::get('/master/tag', \App\Livewire\Admin\Master\Tag::class)->name('admin.master.tag');
-    Route::get('/master/profile', \App\Livewire\Admin\Post\About::class)->name('admin.master.profile');
+    Route::get('/master/profile', \App\Livewire\Admin\Master\About::class)->name('admin.master.about');
 });
