@@ -1,9 +1,9 @@
 <div>
     <div class="flex">
         <!-- Start Content -->
-        <div class="w-3/4 py-20 px-20">
+        <div class="w-3/4">
             <section id="hero">
-                <div class="text-center">
+                <div class="text-center py-20 px-20">
                     <h2 class="font-heading text-5xl sm:text-4xl lg:text-6xl font-thin">Wonderful serenity has taken possession
                         of my entire soul</h2>
                     <p class="text-xl xl:px-40 pt-5 text-stone-700">by <b>Amanda Garfied </b>on 12th Jan 2023</p>
