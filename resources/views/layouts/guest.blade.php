@@ -13,7 +13,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -23,5 +23,10 @@
 </div>
 
 @livewireScripts
+<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/js/modernizr.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/plugins.js"></script>
 </body>
 </html>
+
