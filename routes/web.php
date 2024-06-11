@@ -29,7 +29,6 @@ Route::middleware([
     //Post
     Route::get('/post/sylva-news', \App\Livewire\Admin\Post\SylvaNews::class)->name('admin.post.sylva-news');
     Route::get('/post/album', \App\Livewire\Admin\Post\Album::class)->name('admin.post.album');
-    Route::get('/post/about', \App\Livewire\Admin\Post\About::class)->name('admin.post.about');
 
 
     //Series
@@ -39,4 +38,5 @@ Route::middleware([
     //Master
     Route::get('/master/user', \App\Livewire\Admin\Master\User::class)->name('admin.master.user');
     Route::get('/master/tag', \App\Livewire\Admin\Master\Tag::class)->name('admin.master.tag');
+    Route::get('/master/profile', \App\Livewire\Admin\Master\About::class)->name('admin.master.about');
 });

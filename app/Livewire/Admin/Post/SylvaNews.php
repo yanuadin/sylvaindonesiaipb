@@ -43,6 +43,7 @@ class SylvaNews extends Component
         'status' => 'Status',
         'student_name' => 'Nama Mahasiswa',
         'student_year' => 'Angkatan',
+        'updated_at' => 'Terakhir Update'
     ];
     public string $submitMethod = 'store';
     public bool $isEditMode = false;

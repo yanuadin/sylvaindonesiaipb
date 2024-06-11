@@ -52,8 +52,12 @@
                             <tr class="border-b dark:border-gray-700">
                                 <td class="px-4 py-3 w-16">{{ $datas->firstItem() + $keyData }}</td>
                                 @foreach($tableHead as $keyHead => $head)
-                                    <td class="px-4 py-3"
-                                        wire:key="{{ $keyHead . '-' . $keyData }}">{{ $data[$keyHead] }}</td>
+                                    @if($keyHead === 'updated_at')
+                                        <td class="px-4 py-3">{{ \Carbon\Carbon::create($data[$keyHead])->format('j/n/Y') }}</td>
+                                    @else
+                                        <td class="px-4 py-3"
+                                            wire:key="{{ $keyHead . '-' . $keyData }}">{{ $data[$keyHead] }}</td>
+                                    @endif
                                 @endforeach
                                 <td class="px-4 py-3 flex items-center justify-end" wire:key="{{ 'action-' . $keyData }}">
                                     <button wire:click="showViewModal({{ $data->id }})" data-modal-target="{{ $dataModal }}" data-modal-toggle="{{ $dataModal }}" type="button" class="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-100 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-amber-600">

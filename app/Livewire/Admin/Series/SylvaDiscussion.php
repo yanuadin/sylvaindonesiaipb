@@ -39,6 +39,7 @@ class SylvaDiscussion extends Component
         'title' => 'Judul',
         'tags' => 'Tag',
         'status' => 'Status',
+        'updated_at' => 'Terakhir Update'
     ];
     public string $submitMethod = 'store';
     public bool $isEditMode = false;
