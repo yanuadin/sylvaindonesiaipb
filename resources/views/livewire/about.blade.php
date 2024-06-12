@@ -1,12 +1,16 @@
 <div>
-<section id="hero">
-        <div class="py-60 xl:px-96 text-center">
+    <section id="hero">
+        <div class="text-center py-20 px-20">
             <h2 class="font-heading text-5xl sm:text-4xl lg:text-6xl font-thin">About Sylva Indonesia IPB</h2>
         </div>
     </section>
+
     <section id="about-content">
-        <div class="container mx-auto px-8">
-            <div class="">
+        <div class="container mx-auto px-8 mt-20">
+            <div>
+                <img class="h-auto w-full" src="{{ asset('image/hero-img.png') }}" alt="image description">
+            </div>
+            <div class="mt-20">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut cursus leo vel orci malesuada, id
                     sodales em volutpat. Vivamus sagittis pulvinar dignissim. Mauris tempus a lacus eu aliquet.
                     Mauris gravida at ectus quis venenatis. Aenean quis feugiat turpis. Etiam lacinia interdum nibh,
@@ -23,13 +27,12 @@
                     blandit commodo mauris, sed fringilla isi congue et. Nunc eu eros ex.</p>
 
             </div>
-            <div class="grid grid-cols-3 justify-items-center my-20">
-                <div class=""><img src="image/blog11.png" class="img-fluid" alt="About us"></div>
-                <div class=""><img src="image/blog10.png" class="img-fluid" alt="About us"></div>
-                <div class=""><img src="image/blog9.png" class="img-fluid" alt="About us"></div>
-            </div>
             <div class="">
-                <h3 class="font-heading text-4xl font-thin mb-5">Learn More About Us</h3>
+                <section id="hero">
+                    <div class="text-center py-20 px-20">
+                        <h2 class="font-heading text-5xl sm:text-4xl lg:text-6xl font-thin">Sejarah Sylva Indonesia IPB</h2>
+                    </div>
+                </section>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -56,53 +59,6 @@
 
             </div>
 
-        </div>
-    </section>
-
-
-    <!-- Blog-block Section Starts -->
-    <section id="blog-block">
-        <div class="columns-5 gap-0 pt-40 px-8">
-            <figure class="blog-block-content image-zoom relative">
-                <a href="blog-single.html" class=" ">
-                    <img class="blog-block-img " src="image/blog7.png" alt="">
-                    <div class="header-overlay hidden lg:flex absolute inset-x-0 bottom-0 justify-center">
-                        <h5 class="font-heading text-white text-xl p-12">5 Helpful Tips for Living Healthy Life</h5>
-                    </div>
-                </a>
-            </figure>
-            <figure class="blog-block-content image-zoom relative">
-                <a href="blog-single.html" class=" ">
-                    <img class="blog-block-img " src="image/blog8.png" alt="">
-                    <div class="header-overlay hidden lg:flex absolute inset-x-0 bottom-0 justify-center">
-                        <h5 class="font-heading text-white text-xl p-12">5 Helpful Tips for Living Healthy Life</h5>
-                    </div>
-                </a>
-            </figure>
-            <figure class="blog-block-content image-zoom relative">
-                <a href="blog-single.html" class=" ">
-                    <img class="blog-block-img " src="image/blog9.png" alt="">
-                    <div class="header-overlay hidden lg:flex absolute inset-x-0 bottom-0 justify-center">
-                        <h5 class="font-heading text-white text-xl p-12">5 Helpful Tips for Living Healthy Life</h5>
-                    </div>
-                </a>
-            </figure>
-            <figure class="blog-block-content image-zoom relative">
-                <a href="blog-single.html" class=" ">
-                    <img class="blog-block-img " src="image/blog10.png" alt="">
-                    <div class="header-overlay hidden lg:flex absolute inset-x-0 bottom-0 justify-center">
-                        <h5 class="font-heading text-white text-xl p-12">5 Helpful Tips for Living Healthy Life</h5>
-                    </div>
-                </a>
-            </figure>
-            <figure class="blog-block-content image-zoom relative">
-                <a href="blog-single.html" class=" ">
-                    <img class="blog-block-img " src="image/blog11.png" alt="">
-                    <div class="header-overlay hidden lg:flex absolute inset-x-0 bottom-0 justify-center">
-                        <h5 class="font-heading text-white text-xl p-12">5 Helpful Tips for Living Healthy Life</h5>
-                    </div>
-                </a>
-            </figure>
         </div>
     </section>
 </div>

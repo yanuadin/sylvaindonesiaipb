@@ -36,7 +36,7 @@
 .disabled-input {
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
-    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     --tw-text-opacity: 1;
     background-color: rgb(248 250 252/var(--tw-bg-opacity));
     --tw-border-opacity: 1;
@@ -75,26 +75,30 @@
     display: inline;
 }
 
-@layer components{
+@layer components {
     /* Image zoom effect on hover */
-  .image-zoom {
-    overflow: hidden;
-  }
-  
-  .image-zoom img {
-    transition: transform 0.3s ease-out;
-  }
-  
-  .image-zoom:hover img {
-    transform: scale(1.1);
-  }
-  
+    .image-zoom {
+        overflow: hidden;
+    }
+
+    .image-zoom img {
+        transition: transform 0.3s ease-out;
+    }
+
+    .image-zoom:hover img {
+        transform: scale(1.1);
+    }
+
     /* featured section style start  */
-  button.filter-button.active {
-    color: white;
-    background: #B7C177;
-  }
-  
-  }
+    button.filter-button.active {
+        color: white;
+        background: #B7C177;
+    }
+
+}
+
+.bg-jarralax {
+    background-image: url('/public/image/hero-img.png') !important;
+}
 
 /* End tiptap WYSIWYG editor css */

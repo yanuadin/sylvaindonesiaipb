@@ -1,4 +1,10 @@
 <div>
+    <section id="hero">
+        <div class="text-center pt-20 pb-40 px-20">
+            <h2 class="font-heading text-5xl sm:text-4xl lg:text-6xl font-thin">Kabar Sylva</h2>
+        </div>
+    </section>
+
     <section id="blog-card">
         <div class="container mx-auto px-8">
             <div class="columns-1 md:columns-2 lg:columns-3 gap-7 px-5 lg:px-0">

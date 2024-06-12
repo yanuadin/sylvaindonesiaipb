@@ -3,8 +3,8 @@
         <div class=" py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between ">
                 <div class="flex items-center justify-between">
-                    <div class="flex-shrink-0">
-                        <a href="{{ route('home') }}"><img class="" src="image/logo_sylva3.png" alt="Sylva indo"></a>
+                    <div class="flex-shrink-0 max-h-10 max-w-10">
+                        <a href="{{ route('home') }}"><img class="" src="{{ asset('image/logo_sylva3.png') }}" alt="Sylva IPB"></a>
                     </div>
                 </div>
                 <div class="hidden md:block">
@@ -16,7 +16,8 @@
                         <a href="{{ route('article') }}"
                            class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Article</a>
                         <a href="{{ route('about') }}"
-                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">About Us</a>
+                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">About
+                            Us</a>
                         <a href="{{ route('album') }}"
                            class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Album</a>
                         <div>
@@ -64,10 +65,13 @@
         <div class="md:hidden hidden bg-white" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2 h-screen sm:px-3">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="{{ route('home') }}" class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2"
+                <a href="{{ route('home') }}"
+                   class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2"
                    aria-current="page">Home</a>
-                <a href="{{ route('article') }}" class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2 ">Article</a>
-                <a href="{{ route('home') }}" class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2 ">About
+                <a href="{{ route('article') }}"
+                   class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2 ">Article</a>
+                <a href="{{ route('home') }}"
+                   class="font-heading block uppercase text-base text-black hover:text-gray-500 p-2 ">About
                     Us</a>
                 <div>
                     @if (Route::has('login'))
