@@ -1,5 +1,4 @@
 <div>
-    <!-- blog-card Section Starts -->
     <section id="blog-card">
         <div class="container mx-auto px-8">
             <div class="columns-1 md:columns-2 lg:columns-3 gap-7 px-5 lg:px-0">
@@ -251,7 +250,6 @@
         </div>
     </section>
 
-    <!-- Blog-block Section Starts -->
     <section id="blog-block">
         <div class="columns-5 gap-0 pt-40 px-8">
             <figure class="blog-block-content image-zoom relative">

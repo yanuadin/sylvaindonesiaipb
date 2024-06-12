@@ -1,4 +1,9 @@
 <div>
+<section id="hero">
+        <div class="py-60 xl:px-96 text-center">
+            <h2 class="font-heading text-5xl sm:text-4xl lg:text-6xl font-thin">About Sylva Indonesia IPB</h2>
+        </div>
+    </section>
     <section id="about-content">
         <div class="container mx-auto px-8">
             <div class="">

@@ -17,6 +17,7 @@ Route::get('/', \App\Livewire\Home::class)->name('home');
 Route::get('/article', \App\Livewire\Article::class)->name('article');
 Route::get('/about', \App\Livewire\About::class)->name('about');
 Route::get('/inner', \App\Livewire\Inner::class)->name('inner');
+Route::get('/album', \App\Livewire\Album::class)->name('album');
 
 
 Route::middleware([
