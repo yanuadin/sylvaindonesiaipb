@@ -7,17 +7,17 @@
 
     <section id="about-content">
         <div class="container mx-auto px-8 mt-20">
-            @if($profile->image)
+            @if($profile?->image)
                 <div>
                     <img class="h-auto w-full" src="{{ asset('storage/' . $profile->image) }}" alt="image description">
                 </div>
             @endif
-            @if($profile->about)
+            @if($profile?->about)
                 <div class="mt-20">
                     <p>{{ $profile->about }}</p>
                 </div>
             @endif
-            @if($profile->history)
+            @if($profile?->history)
                 <div class="">
                     <section id="hero">
                         <div class="text-center py-20 px-20">
