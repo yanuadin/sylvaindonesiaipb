@@ -10,7 +10,7 @@ class AlbumModel extends Model
     use HasFactory;
 
     protected $table = 'albums';
-    protected $fillable = ['title', 'description', 'image', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'description', 'image', 'is_public', 'created_by', 'updated_by'];
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -7,26 +7,26 @@
 
     <section id="blog-card">
         <div class="container mx-auto pt-28 px-8">
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-7 px-5 lg:px-0">
-                @foreach([1,2,3,4,5,6] as $value)
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+                @foreach($sylva_news as $news)
                     <div class="blog-post py-10">
                         <div class="image-zoom ">
-                            <a href="{{ route('inner') }}" class="blog-img"><img
-                                    src="{{ asset('image/blog'. $value .'.png') }}" alt="" class=""></a>
+                            <a href="{{ route('inner', $news->slug) }}" class="blog-img"><img
+                                    src="{{ $news->image ? asset('storage/' . $news->image) : asset('image/no_image.png') }}" alt="Article Image" class="h-72 w-full"></a>
                         </div>
                         <div class="pt-8">
-                            <span class="blog-date uppercase">in <b>Travel Tips</b> on 12th Jan 2023</span>
+                            <span class="blog-date uppercase"><b>{{ $news->student_name }} | </b> {{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y') }}</span>
                         </div>
                         <div class="">
                             <h3 class="py-5">
-                                <a href="{{ route('inner') }}" class="font-heading font-thin text-2xl hover:text-gray-500">
-                                    I am alone, and feel the charm of existence created for the bliss
+                                <a href="{{ route('inner', $news->slug) }}" class="font-heading font-thin text-2xl hover:text-gray-500 line-clamp-1">
+                                    {{ $news->title }}
                                 </a>
                             </h3>
-                            <p class="pb-10">I am so happy, my dear friend, so absorbed in the exquisite sense of mere
-                                tranquil existence, that I neglect my talents. I should be incapable of drawing since
-                            </p>
-                            <a href="{{ route('inner') }}"
+                            <div class="line-clamp-3 mb-10 h-18">
+                                {!! $news->content !!}
+                            </div>
+                            <a href="{{ route('inner', $news->slug) }}"
                                class="font-heading text-sm font-normal py-4 px-8 bg-transparent hover:bg-black text-black hover:text-white border-black border-2 hover:border-transparent rounded-full transition duration-700 ease-in-out">
                                 Read More
                             </a>

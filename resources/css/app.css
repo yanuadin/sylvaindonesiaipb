@@ -101,4 +101,12 @@
     background-image: url('/public/image/hero-img.png') !important;
 }
 
+.h-18 {
+    height: 4.5rem;
+}
+
+p:empty::after {
+    content: "\00A0";
+}
+
 /* End tiptap WYSIWYG editor css */

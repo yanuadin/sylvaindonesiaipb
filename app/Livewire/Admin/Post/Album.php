@@ -18,6 +18,7 @@ class Album extends Component
     public string $title = '';
     public string $description = '';
     public $image;
+    public bool $is_public = true;
     public string $search = '';
 
     /**
@@ -42,7 +43,10 @@ class Album extends Component
             $validator->after(function ($validator) {
                 if ($this->image === null && $this->submitMethod === 'store') {
                     $validator->errors()->add('image', 'The image field is required.');
-                }
+                };
+                if (AlbumModel::query()->count() >= 9) {
+                    $validator->errors()->add('is_public', 'The public album must least than 9.');
+                };
             });
         });
     }
@@ -68,6 +72,7 @@ class Album extends Component
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:3072'],
+            'is_public' => ['required', 'boolean']
         ];
     }
 
@@ -80,6 +85,7 @@ class Album extends Component
             'title' => $validated['title'],
             'description' => $validated['description'],
             'image' => $validated['image'],
+            'is_public' => $validated['is_public'],
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id
         ]);
@@ -98,6 +104,7 @@ class Album extends Component
         $this->album->title = $validated['title'];
         $this->album->description = $validated['description'];
         $this->album->image = $validated['image'];
+        $this->album->is_public = $validated['is_public'];
         $this->album->updated_by = auth()->user()->id;
         $this->album->save();
 
@@ -135,6 +142,7 @@ class Album extends Component
         $this->title = $album->title;
         $this->description = $album->description;
         $this->image = $album->image;
+        $this->is_public = $album->is_public;
         $this->album = $album;
     }
 

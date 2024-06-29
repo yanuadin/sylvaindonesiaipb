@@ -8,10 +8,10 @@
     <section id="gallery">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                @foreach([1,2,3,4,5,6,7,8,9] as $value)
+                @foreach($albums as $album)
                     <div>
-                        <img class="max-h-80 w-full rounded-lg"
-                             src="{{ asset('image/blog'. $value .'.png') }}" alt="">
+                        <img class="h-72 w-full rounded-lg"
+                             src="{{ asset('storage/' . $album->image) }}" alt="">
                     </div>
                 @endforeach
             </div>

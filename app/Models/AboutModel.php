@@ -9,7 +9,7 @@ class AboutModel extends Model
 {
     use HasFactory;
     protected $table = 'abouts';
-    protected $fillable = ['about', 'history','created_by','updated_by'];
+    protected $fillable = ['about', 'history','image', 'contact', 'created_by','updated_by'];
 
     public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -14,10 +14,9 @@
                            class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5"
                            aria-current="page">Home</a>
                         <a href="{{ route('article') }}"
-                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Article</a>
+                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Kabar Sylva</a>
                         <a href="{{ route('about') }}"
-                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">About
-                            Us</a>
+                           class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Profil</a>
                         <a href="{{ route('album') }}"
                            class="font-heading uppercase text-base text-black hover:text-gray-500 py-2 px-5">Album</a>
                         <div>

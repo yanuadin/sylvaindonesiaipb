@@ -49,6 +49,14 @@
                                     @error('image') <span class="text-sm text-red-600 dark:text-red-500">{{ $message }}</span> @enderror
                                 </div>
                             @endif
+                            <div class="col-span-4">
+                                <x-flowbite.label modelName="is_public" text="Publik"/>
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" wire:model="is_public" value="" class="sr-only peer" {{ $is_public ? 'checked' : '' }} {{ $isViewMode ? 'disabled' : '' }}>
+                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label>
+                                @error('is_public') <div><span class="text-sm text-red-600 dark:text-red-500">{{ $message }}</span></div> @enderror
+                            </div>
                         </div>
 
                         <div class="flex {{ $isViewMode ? 'justify-center' : 'justify-between' }} items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

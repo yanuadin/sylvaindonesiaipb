@@ -2,6 +2,7 @@ import "./bootstrap";
 import "flowbite";
 import { initFlowbite } from 'flowbite'
 import { Modal } from 'flowbite';
+import 'iconify-icon';
 
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'

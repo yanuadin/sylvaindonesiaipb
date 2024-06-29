@@ -1,3 +1,5 @@
+@props(['profile' => null])
+
 <div>
     <section id="footer" class="relative px-8">
 
@@ -27,6 +29,11 @@
                             <li>
                                 <a href="#" class="hover:underline me-4 md:me-6">Facebook</a>
                             </li>
+                            @if($profile?->contact)
+                                <li>
+                                    <a href="#" class="hover:underline me-4 md:me-6">{{ $profile->contact }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                     <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
