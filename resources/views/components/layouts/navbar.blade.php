@@ -35,11 +35,11 @@
                 </svg>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
-            <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-between mr-4">
                 <img
                     src="{{ asset('image/logo_sylva.png') }}"
                     class="mr-3 h-8"
-                    alt="Flowbite Logo"
+                    alt="Sylva Indonesia Logo"
                 />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sylva Indonesia IPB</span>
             </a>
